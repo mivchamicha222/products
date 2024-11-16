@@ -1,0 +1,101 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0e1a3a;
+
+
+
+  &__header {
+    padding: 0.5rem; /* 8px */
+    background-color: #bbcccc;
+  }
+
+  &__text {
+    height: 2rem; /* 32px */
+    border-radius: 0.5rem; /* 8px */
+    border: 1px solid #9fa8be;
+    margin-left: -10px;
+  }
+
+  &__body {
+    background-color: white;
+    padding: 1rem; /* 16px */
+  }
+
+  &__scroller {
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: 1.25rem;
+
+    &::-webkit-scrollbar {
+      height: 0.5rem; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888; 
+      border-radius: 0.625rem; 
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+      border-radius: 0.625rem; 
+    }
+
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+  }
+
+  &__head {
+    background-color:hsl(180, 13%, 92%);
+    text-align: left;
+  }
+
+  &__columns {
+    background-color: #929696;;
+  }
+
+  &__cell {
+    font-size: 0.75rem;
+    border-bottom: 0.125rem solid hsl(180, 13%, 92%);
+    padding: 0.5rem;
+  }
+
+   &__icon {
+     width: 1rem;
+   }
+
+   &__logo {
+     height: 2rem;
+   }
+
+   &__select {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     columns: 2;
+   }
+
+   &__icon {
+    width: 1.25rem; 
+    vertical-align: middle;
+  }
+
+   &__quantity {
+     text-align: center;
+     width:3.5rem; 
+     height:1.5rem;
+   }
+}
+
