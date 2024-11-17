@@ -16,7 +16,6 @@ export class FinancialProductsComponent implements OnInit {
   selectedOption = this.selectOptions[0]; // Opción seleccionada por defecto
 
   ngOnInit() {
-    this.productFiltered = this.dataSource.data; // Inicializa los productos filtrados
     this.searchProduct(); // Filtra los productos al iniciar
   }
 
@@ -35,5 +34,10 @@ export class FinancialProductsComponent implements OnInit {
   onOptionChange(newOption: number): void {
     this.selectedOption = newOption; // Actualiza la opción seleccionada
     this.searchProduct(); // Filtra nuevamente los productos según la nueva opción
+  }
+
+  onFilterChange(newFilter: string): void {
+    this.filterName = newFilter; // Actualiza el filtro
+    this.searchProduct(); // Vuelve a filtrar los productos según el nuevo filtro
   }
 }

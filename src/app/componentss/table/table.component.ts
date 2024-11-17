@@ -7,36 +7,37 @@ import { Product } from '../../interfaces/product.interface';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  @Input() dataTable: Product[] = []; // Datos originales
-  @Input() selectOptions: number[] = [5, 10, 20]; // Opciones para la paginación
-  @Input() selectedOption: number = 5; // Opción seleccionada por defecto
-  @Output() optionChange = new EventEmitter<number>(); // Emitir cambios en la opción seleccionada
-
-  filterName: string = ''; // Para el filtro de búsqueda
-  productFiltered: Product[] = []; // Productos filtrados
+  @Input() dataTable: Product[] = [];
+  @Input() selectOptions: number[] = [5, 10, 20]; 
+  @Input() selectedOption: number = 5; 
+  @Output() optionChange = new EventEmitter<number>(); 
+  @Output() filterChange = new EventEmitter<string>(); 
+  filterName: string = ''; 
+  productFiltered: Product[] = [];
 
   ngOnInit() {
-    this.searchProduct(); // Filtrar productos al iniciar
+    this.searchProduct(); 
   }
 
   searchProduct(): void {
-    // Filtrar productos según el nombre
     const filteredProducts = !this.filterName
       ? this.dataTable
-      : this.dataTable.filter((product) =>
+      : this.dataTable.filter(product =>
           product.name.toLowerCase().includes(this.filterName.toLowerCase())
       );
-
-    // Actualizar los productos filtrados según la opción seleccionada
     this.productFiltered = filteredProducts.slice(0, this.selectedOption);
-  }
+}
 
   onSelectChange(): void {
-    this.optionChange.emit(this.selectedOption); // Emitir el cambio al componente padre
-    this.searchProduct(); // Vuelve a filtrar los productos cuando cambia la selección
+    this.optionChange.emit(this.selectedOption); 
+    this.searchProduct();
   }
 
-  onFilterChange(): void {
-    this.searchProduct(); // Filtrar productos cuando cambia el texto de búsqueda
-  }
+  onFilterInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement; 
+    const newFilter = inputElement.value; 
+    this.filterName = newFilter; 
+    this.searchProduct(); 
+    this.filterChange.emit(this.filterName);
+}
 }

@@ -1,5 +1,13 @@
 .container__select {
-  display: flex; // Usar flexbox para alinear los elementos
-  justify-content: space-between; // Espacio entre los elementos
-  align-items: center; // Alinear verticalmente al centro
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.container__results {
+  font-size: 14px;
+}
+
+.container__quantity {
+  width: 50px;
 }

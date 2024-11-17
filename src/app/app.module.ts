@@ -9,6 +9,7 @@ import { PaguinationComponent } from '../app/componentss/paguination/paguination
 import { TableComponent } from '../app/componentss/table/table.component';
 import { FinancialProductsComponent } from './pages/financial-products/financial-products.component';
 import { FormAddProductsComponent } from './pages/financial-products/form-add-products/form-add-products.component'; 
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FormAddProductsComponent } from './pages/financial-products/form-add-pr
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
