@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
 
 @Component({
@@ -6,92 +6,37 @@ import { Product } from '../../interfaces/product.interface';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
-  @Input() dataTable: Product[] = [];
+export class TableComponent implements OnInit {
+  @Input() dataTable: Product[] = []; // Datos originales
+  @Input() selectOptions: number[] = [5, 10, 20]; // Opciones para la paginación
+  @Input() selectedOption: number = 5; // Opción seleccionada por defecto
+  @Output() optionChange = new EventEmitter<number>(); // Emitir cambios en la opción seleccionada
 
-  select: number = 5;
-  filterName: string = ''; 
-  productFiltered: Product[] = [];
+  filterName: string = ''; // Para el filtro de búsqueda
+  productFiltered: Product[] = []; // Productos filtrados
 
-  optionSelect = [5, 10, 20];
-
-
-  productsHardcoded: Product[] = [
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Nombre del producto',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-    {
-      id: 'trj-crd',
-      name: 'Jose',
-      description: 'Descripción',
-      logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
-      date_release: new Date('01/01/2000'),
-      date_revision: new Date('01/01/2001')
-    },
-  ];
-
-  ngOnInit(): void {
-    this.productFiltered = this.productsHardcoded;
-    this.searchProduct();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataTable']) {
-      this.searchProduct();
-    }
+  ngOnInit() {
+    this.searchProduct(); // Filtrar productos al iniciar
   }
 
   searchProduct(): void {
+    // Filtrar productos según el nombre
     const filteredProducts = !this.filterName
-        ? this.productsHardcoded
-        : this.productsHardcoded.filter((product) =>
-            product.name.toLowerCase().includes(this.filterName.toLowerCase())
-        );
-    this.productFiltered = filteredProducts.slice(0, this.select);
+      ? this.dataTable
+      : this.dataTable.filter((product) =>
+          product.name.toLowerCase().includes(this.filterName.toLowerCase())
+      );
+
+    // Actualizar los productos filtrados según la opción seleccionada
+    this.productFiltered = filteredProducts.slice(0, this.selectedOption);
+  }
+
+  onSelectChange(): void {
+    this.optionChange.emit(this.selectedOption); // Emitir el cambio al componente padre
+    this.searchProduct(); // Vuelve a filtrar los productos cuando cambia la selección
+  }
+
+  onFilterChange(): void {
+    this.searchProduct(); // Filtrar productos cuando cambia el texto de búsqueda
   }
 }

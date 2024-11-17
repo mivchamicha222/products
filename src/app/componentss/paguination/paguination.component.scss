@@ -1,4 +1,5 @@
-.paguination{
-    background-color: #bbcccc;
-    padding: 32px;
-  }
+.container__select {
+  display: flex; // Usar flexbox para alinear los elementos
+  justify-content: space-between; // Espacio entre los elementos
+  align-items: center; // Alinear verticalmente al centro
+}

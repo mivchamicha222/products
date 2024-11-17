@@ -1,0 +1,10 @@
+<app-title></app-title>
+<app-table 
+    [dataTable]="productFiltered">
+</app-table>
+<app-paguination 
+    [totalItems]="dataSource.data.length" 
+    [selectOptions]="selectOptions" 
+    [selectedOption]="selectedOption" 
+    (optionChange)="onOptionChange($event)">
+</app-paguination>

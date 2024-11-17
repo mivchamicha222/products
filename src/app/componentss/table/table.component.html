@@ -39,15 +39,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="container__select">
-            <p class="container__results">Resultados {{ productFiltered.length }}</p> <!-- Esto mostrará la cantidad correcta -->
-            <select
-                class="container__quantity"
-                [(ngModel)]="select"
-                (change)="searchProduct()"
-            >
-                <option [value]="option" *ngFor="let option of optionSelect">{{ option }}</option>
-            </select>
-        </div>
     </div>
 </section>

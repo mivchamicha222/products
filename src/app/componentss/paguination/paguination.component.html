@@ -1,4 +1,10 @@
-<app-title></app-title>
-<div class="paguination">
-    <app-table [dataTable]="dataProducts" *ngIf="!loading"></app-table>
+<div class="container__select">
+    <p class="container__results">Resultados: {{ totalItems }}</p> 
+    <select
+        class="container__quantity"
+        [(ngModel)]="selectedOption"
+        (change)="onSelectChange()"
+    >
+        <option *ngFor="let option of selectOptions" [value]="option">{{ option }}</option>
+    </select>
 </div>

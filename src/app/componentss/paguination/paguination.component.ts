@@ -1,33 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, ResponseProduct } from '../../interfaces/product.interface';
-import { ProductService } from '../../services/product.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-paguination',
   templateUrl: './paguination.component.html',
   styleUrls: ['./paguination.component.scss']
 })
-export class PaguinationComponent implements OnInit {
-  dataProducts: Product[] = [];
-  loading: boolean = true;
+export class PaguinationComponent {
+  @Input() totalItems: number = 0; // Total de elementos a mostrar
+  @Input() selectOptions: number[] = []; // Opciones para seleccionar la cantidad de elementos por página
+  @Input() selectedOption: number = 5; // Opción seleccionada por defecto
+  @Output() optionChange = new EventEmitter<number>(); // Emitir cambios en la opción seleccionada
 
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.getDataProducts();
-  }
-
-  getDataProducts() {
-    this.productService.getAllProducts().subscribe(
-      (response: ResponseProduct) => {
-        console.log('Response from API:', response);
-        this.dataProducts = response.data;
-        this.loading = false;
-      },
-      error => {
-        console.error('Error fetching products:', error);
-        this.loading = false;
-      }
-    );
+  onSelectChange(): void {
+    this.optionChange.emit(this.selectedOption); // Emitir el cambio al componente padre
   }
 }
