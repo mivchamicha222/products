@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FormAddProductsComponent } from './form-add-products.component';
 
 describe('FormAddProductsComponent', () => {
@@ -20,4 +19,10 @@ describe('FormAddProductsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should have a defined component', () => {
+    expect(component).toBeDefined();
+  });
+
 });
