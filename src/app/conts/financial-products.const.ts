@@ -78,7 +78,7 @@ export const productsHardcoded: ResponseProduct = {
             id: 10,
             name: 'Tarjeta Visa',
             description: 'Descripción',
-            logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/pay-with-visa/tarjetas/logo-visa.png', // URL actualizada
+            logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
             date_release: new Date('01/01/2000'),
             date_revision: new Date('01/01/2001')
         },
@@ -86,7 +86,7 @@ export const productsHardcoded: ResponseProduct = {
            id : 11,
            name : "Tarjeta MasterCard",
            description : "Descripción",
-           logo : "https://www.visa.com.ec/dam/VCOM/regional/lac/SPD/default/pay-with-visa/tarjetas/logo-mastercard.png", // URL actualizada
+           logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
            date_release : new Date("02-03-2023"),
            date_revision : new Date("03-03-2023")
        },
@@ -94,7 +94,7 @@ export const productsHardcoded: ResponseProduct = {
            id : 12,
            name : "Solidario",
            description : "Solidario",
-           logo : "https://www.visa.com.ec/dam/VCOM/regional/lac/SPD/default/pay-with-visa/tarjetas/logo-solidario.png", // URL actualizada
+           logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
            date_release : new Date("02-02-2023"),
            date_revision : new Date("03-02-2023")
        },
@@ -102,7 +102,7 @@ export const productsHardcoded: ResponseProduct = {
            id : 13,
            name : "Tarjeta MasterCard",
            description : "Descripción",
-           logo : "https://www.visa.com.ec/dam/VCOM/regional/lac/SPD/default/pay-with-visa/tarjetas/logo-mastercard.png", // URL actualizada
+           logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
            date_release : new Date("02-03-2023"),
            date_revision : new Date("03-03-2023")
        }

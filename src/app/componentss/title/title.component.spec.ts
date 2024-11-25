@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ProductService } from 'src/app/services/product.service'; 
+import { ProductService } from '../../services/product.service'; 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TitleComponent } from './title.component';
 

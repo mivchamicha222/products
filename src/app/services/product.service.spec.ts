@@ -98,9 +98,8 @@ describe('ProductService', () => {
 
   it('should verify product ID', () => {
     service.verifyProductId('1').subscribe(isValid => {
-      expect(isValid).toBeTrue();
+      expect(isValid).toBe(true);
     });
-
     const req = httpMock.expectOne(`${service['URL_BASE']}verification/1`);
     expect(req.request.method).toBe('GET');
     req.flush(true);

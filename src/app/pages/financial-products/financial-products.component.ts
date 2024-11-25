@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { productsHardcoded } from 'src/app/conts/financial-products.const';
+import { productsHardcoded } from '../../conts/financial-products.const';
 import { Product, ResponseProduct } from 'src/app/interfaces/product.interface';
 
 @Component({

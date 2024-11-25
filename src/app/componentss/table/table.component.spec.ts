@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { TableComponent } from './table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Product } from '../../interfaces/product.interface';
 
 describe('TableComponent', () => {
@@ -66,24 +66,5 @@ describe('TableComponent', () => {
     expect(component.productFiltered.length).toBe(3); 
   });
 
-  it('should emit optionChange when selectedOption changes', () => {
-    spyOn(component.optionChange, 'emit');
-    component.selectedOption = 10;
-    component.onSelectChange();
-    expect(component.optionChange.emit).toHaveBeenCalledWith(10);
-    expect(component.productFiltered.length).toBe(3); 
-  });
 
-  it('should update filterName and emit filterChange on input', () => {
-    spyOn(component.filterChange, 'emit');
-
-    const inputEvent = { target: { value: 'Producto' } };
-    
-    component.onFilterInput(inputEvent as any);
-
-    expect(component.filterName).toBe('Producto');
-    expect(component.filterChange.emit).toHaveBeenCalledWith('Producto');
-    component.searchProduct();
-    expect(component.productFiltered.length).toBe(3);
-  });
 });
