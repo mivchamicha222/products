@@ -1,43 +1,42 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
   @Input() dataTable: Product[] = [];
-  @Input() selectOptions: number[] = [5, 10, 20]; 
-  @Input() selectedOption: number = 5; 
-  @Output() optionChange = new EventEmitter<number>(); 
-  @Output() filterChange = new EventEmitter<string>(); 
-  filterName: string = ''; 
+  @Output() filterChange = new EventEmitter<string>();
+  filterName = '';
   productFiltered: Product[] = [];
-
-  ngOnInit() {
-    this.searchProduct(); 
+  totalItems = 0;
+  selectOptions = [5, 10, 20];
+  selectedOption = 5;
+  ngOnInit(): void {
+    this.search();
   }
-
-  searchProduct(): void {
-    const filteredProducts = !this.filterName
-      ? this.dataTable
-      : this.dataTable.filter(product =>
-          product.name.toLowerCase().includes(this.filterName.toLowerCase())
-      );
-    this.productFiltered = filteredProducts.slice(0, this.selectedOption);
-}
-
-  onSelectChange(): void {
-    this.optionChange.emit(this.selectedOption); 
-    this.searchProduct();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataTable']?.currentValue) {
+      this.search();
+    }
+  }
+  
+  search(): void {
+    const filter = this.filterName.trim().toLowerCase();
+    this.productFiltered = this.dataTable.filter((product) =>
+      filter
+        ? product.name.toLowerCase().includes(filter)
+        : true
+    );
+    this.totalItems = this.productFiltered.length;
+    this.productFiltered = this.productFiltered.slice(0, this.selectedOption);
   }
 
   onFilterInput(event: Event): void {
-    const inputElement = event.target as HTMLInputElement; 
-    const newFilter = inputElement.value; 
-    this.filterName = newFilter; 
-    this.searchProduct(); 
+    const inputElement = event.target as HTMLInputElement;
+    this.filterName = inputElement.value;
+    this.search();
     this.filterChange.emit(this.filterName);
-}
+  }
 }

@@ -1,54 +1,71 @@
 <section class="container">
     <div class="container__body">
-        <div class="container__header">
-            <input 
-                type="text" 
-                placeholder="Search..." 
-                class="container__text" 
-                (input)="onFilterInput($event)"
-            >
-        </div>
+        <header class="container__header">
+            <input
+                type="text"
+                placeholder="Search..."
+                class="container__text"
+                (input)="onFilterInput($event)" />
+        </header>
         <div class="table-container">
             <div class="container__scroller">
                 <table class="container__table">
                     <thead class="container__head">
-                        <tr class="container__colums">
+                        <tr>
                             <th class="container__cell">Logo</th>
                             <th class="container__cell">Nombre del producto</th>
-                        <th class="container__cell">Descripción
-                            <img src="assets/icon-info.svg" alt="Informacion" class="container__icon">
-                        </th>
-                        <th class="container__cell">Fecha de liberación
-                            <img src="assets/icon-info.svg" alt="Informacion" class="container__icon">
-                        </th>
-                        <th class="container__cell">Fecha de restructuración
-                            <img src="assets/icon-info.svg" alt="Informacion" class="container__icon">
-                        </th>
+                            <th class="container__cell">
+                                Descripción
+                                <img src="assets/icon-info.svg" alt="Error" class="container__icon" />
+                            </th>
+                            <th class="container__cell">
+                                Fecha de liberación
+                                <img src="assets/icon-info.svg" alt="Error" class="container__icon" />
+                            </th>
+                            <th class="container__cell">
+                                Fecha de restructuración
+                                <img src="assets/icon-info.svg" alt="Error" class="container__icon" />
+                            </th>
                         </tr>
                     </thead>
-                    <tbody class="container__tbody">
+                    <tbody>
                         <tr *ngIf="productFiltered.length === 0">
-                            <td colspan="5" style="text-align: center;">No se encontraron resultados.</td>
+                            <td colspan="5" class="container__no-results">
+                                No se encontraron resultados.
+                            </td>
                         </tr>
                         <tr class="container__row" *ngFor="let product of productFiltered">
                             <td class="container__cell">
-                                <img class="container__logo" [src]="product.logo" alt="{{ product.name }}" *ngIf="product.logo">
+                                <img class="container__logo" [src]="product.logo" [alt]="product.name"
+                                    *ngIf="product.logo" />
                             </td>
                             <td class="container__cell">{{ product.name }}</td>
                             <td class="container__cell">{{ product.description }}</td>
-                            <td class="container__cell">{{ product.date_release | date:'MM/dd/yyyy' }}</td>
-                            <td class="container__cell">{{ product.date_revision | date:'MM/dd/yyyy' }}</td>
+                            <td class="container__cell">
+                                {{ product.date_release | date: 'MM/dd/yyyy' }}
+                            </td>
+                            <td class="container__cell">
+                                {{ product.date_revision | date: 'MM/dd/yyyy' }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <app-paguination 
-                [totalItems]="dataTable.length"
-                [selectOptions]="selectOptions"
-                [selectedOption]="selectedOption"
-                (optionChange)="onSelectChange()">
-            </app-paguination>
-
-        </div> 
+            <div class="container__select">
+                <p class="container__results">
+                    {{ totalItems }} Resultados
+                </p>
+                <select 
+                    class="container__quantity"
+                    [(ngModel)]="selectedOption"
+                    (change)="search()">
+                    <option 
+                        *ngFor="let option of selectOptions"
+                        [value]="option">
+                        {{ option }}
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
 </section>

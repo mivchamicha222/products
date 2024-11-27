@@ -2,6 +2,20 @@
   background-color: #ffffff;
   padding: 1rem;
   margin-top: 10px;
+
+  .container__select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container__results {
+    font-size: 14px;
+  }
+
+  .container__quantity {
+    width: 50px;
+  }
 }
 
 .container {
@@ -35,7 +49,7 @@
   }
 
   &__head {
-    background-color:hsl(180, 5%, 83%);
+    background-color: hsl(180, 5%, 83%);
     text-align: left;
   }
 
@@ -45,51 +59,51 @@
     display: flex;
     scroll-snap-type: x mandatory;
     scroll-padding-inline-start: 1.25rem;
-
     margin-top: 10px;
 
     &::-webkit-scrollbar {
-      height: 0.5rem; 
+      height: 0.5rem;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #888; 
-      border-radius: 0.625rem; 
+      background-color: #888;
+      border-radius: 0.625rem;
     }
 
     &::-webkit-scrollbar-track {
-      background: #ffffff; 
-      border-radius: 0.625rem; 
+      background: #ffffff;
+      border-radius: 0.625rem;
     }
-}
+  }
 
-&__table {
-   width: 100%;
-   min-width: 600px; 
-   border-collapse: collapse;
-   overflow: hidden;
-   background-color: #ffffff;
-   color: rgb(126, 120, 120);
-}
+  &__table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    overflow: hidden;
+    background-color: #ffffff;
+    color: rgb(126, 120, 120);
+  }
 
- &__cell {
-   font-size: 0.75rem;
-   border-bottom: 0.125rem solid hsl(180, 13%, 92%);
-   padding: 0.5rem;
- }
+  &__cell {
+    font-size: 0.75rem;
+    border-bottom: 0.125rem solid hsl(180, 13%, 92%);
+    padding: 0.5rem;
+  }
 
- &__logo {
-   width: 2rem;
-   height: 2rem;
-   border-radius: 5rem;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-left: 0.5rem;
- }
+  &__logo {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+  }
 
- &__icon {
-   width: 1rem; 
-   vertical-align: middle;
- }
+  &__icon {
+    width: 1rem;
+    vertical-align: middle;
+  }
+
 }

@@ -7,6 +7,6 @@ export interface Product {
   date_revision: Date;
 }
 
-export interface ResponseProduct {
+export interface FinancialProducts {
   data: Product[];
 }

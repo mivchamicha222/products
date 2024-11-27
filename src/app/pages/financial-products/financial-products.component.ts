@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { productsHardcoded } from '../../conts/financial-products.const';
-import { Product, ResponseProduct } from 'src/app/interfaces/product.interface';
+import { FinancialProducts, Product } from 'src/app/interfaces/product.interface';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-financial-products',
@@ -8,33 +8,23 @@ import { Product, ResponseProduct } from 'src/app/interfaces/product.interface';
   styleUrls: ['./financial-products.component.scss']
 })
 export class FinancialProductsComponent implements OnInit {
-  dataSource: ResponseProduct = productsHardcoded;
-  productFiltered: Product[] = []; 
+  productFiltered: Product[] = [];
   filterName: string = '';
-  
   selectOptions = [5, 10, 20];
-  selectedOption = this.selectOptions[0];
+
+  constructor(
+    private productService: ProductService
+  ) {
+  }
 
   ngOnInit() {
-    this.searchProduct();
+    this.search();
   }
 
-  searchProduct(): void {
-    const filteredProducts = !this.filterName
-      ? this.dataSource.data
-      : this.dataSource.data.filter(product =>
-          product.name.toLowerCase().includes(this.filterName.toLowerCase())
-      );
-    this.productFiltered = filteredProducts.slice(0, this.selectedOption);
+  search(): void {
+    this.productService.getAllProducts().subscribe((product: FinancialProducts) => {
+      this.productFiltered = product.data
+    })
   }
 
-  onOptionChange(newOption: number): void {
-    this.selectedOption = newOption;
-    this.searchProduct(); 
-  }
-
-  onFilterChange(newFilter: string): void {
-    this.filterName = newFilter; 
-    this.searchProduct();
-  }
 }

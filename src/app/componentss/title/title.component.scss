@@ -1,15 +1,20 @@
-.header{
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     gap: 12px;
-    &__logo{
-        height: 24px;
-    }
-    &__title{
-        font-family:Arial, Helvetica, sans-serif;
-        font-size: 16px;
-        color: rgb(3, 27, 56);
-    }
+}
+
+.header__logo {
+    height: 24px;
+    width: auto;
+}
+
+.header__title {
+    font-family: 'Roboto' , Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #031b38;
+    margin: 0;
 }
